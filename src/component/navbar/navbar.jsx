@@ -3,7 +3,7 @@ import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "f
 import Icon from '../../assets/images/icon.jpg'
 export function NavbarComponent() {
     return (
-        <Navbar fluid rounded>
+        <Navbar className="fixed w-full top-0" fluid rounded>
             <NavbarBrand href="/">
                 <img src={Icon} className=" h-14 sm:h-9" alt="Flowbite React Logo" />
 
