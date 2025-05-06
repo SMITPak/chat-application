@@ -8,6 +8,7 @@ import {
 import { Button, Form, Input } from "antd";
 import { InputFields } from "../form/input";
 import { supabase } from "../../config/url";
+import toast from "react-hot-toast";
 
 const FormPage = () => {
   const [form] = Form.useForm();
@@ -22,11 +23,17 @@ const FormPage = () => {
         const { data, error } = await supabase.auth.signUp({
           email: values.email,
           password: values.password,
-          name: `${values.firstName} ${values.lastName}`,
+          options: {
+            data: {
+              full_name: `${values.firstName} ${values.lastName}`,
+            },
+          },
         });
-        if (data) {
+        if (data.user != null) {
           form.resetFields();
+          setFormState('Sign In')
         } else {
+          toast.error(error)
           console.log(error);
         }
       } catch (err) {
